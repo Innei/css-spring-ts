@@ -17,19 +17,19 @@ describe('css-spring', () => {
     padding: -200rem 10em 0px 20rem;
     transform: translate(5px 2em) rotate(15deg) scale(1);
     border: 3px solid #ff0000;
-  `
-      )
+  `,
+      ),
     ).toMatchSnapshot()
 
     expect(
       spring(`border: 1px solid #00f;`, `border: 25px solid #bada55;`, {
         precision: 5,
         keyframePrecision: 3,
-      })
+      }),
     ).toMatchSnapshot()
 
     expect(
-      spring(`border: 1px dashed #00f;`, `border: 25px solid #bada55;`)
+      spring(`border: 1px dashed #00f;`, `border: 25px solid #bada55;`),
     ).toMatchSnapshot()
   })
 })
