@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "@innei/eslint-config-ts"
+  ]
+}

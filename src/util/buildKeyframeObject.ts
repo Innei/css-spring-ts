@@ -1,19 +1,30 @@
-export const addOrApppend = (obj, key, value) =>
+export const addOrApppend = (
+  obj: { [key: string]: string },
+  key: string,
+  value: string,
+): { [key: string]: string } =>
   Object.assign(obj, {
     [key]: `${obj[key] || ''}${value}`,
   })
 
-export const getFunctionValue = (values, step) =>
-  values.map(part => (part.values ? part.values[step] : '')).join('')
+export const getFunctionValue = (values: any[], step: number): string =>
+  values.map((part) => (part.values ? part.values[step] : '')).join('')
 
-const buildKeyframeObject = (obj, keyframePercentages) => {
-  let result = {}
+interface Keyframe {
+  [key: string]: { [key: string]: string };
+}
+
+const buildKeyframeObject = (
+  obj: any,
+  keyframePercentages: string[],
+): Keyframe => {
+  const result: Keyframe = {}
   for (let i = 0; i < keyframePercentages.length; i++) {
     const element = keyframePercentages[i]
     result[element] = {}
 
-    for (let key of Object.keys(obj)) {
-      result[element] = obj[key].reduce((accu, part) => {
+    for (const key of Object.keys(obj)) {
+      result[element] = obj[key].reduce((accu: any, part: any) => {
         switch (part.type) {
           case 'Dimension':
           case 'Fixed':
@@ -24,7 +35,7 @@ const buildKeyframeObject = (obj, keyframePercentages) => {
             return addOrApppend(
               result[element],
               key,
-              `${part.name}(${getFunctionValue(part.values, i)})`
+              `${part.name}(${getFunctionValue(part.values, i)})`,
             )
         }
         return result[element]
